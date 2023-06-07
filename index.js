@@ -11,6 +11,10 @@ app.use(express.json());
 
 app.use(router);
 
+app.get('/health', (req, res) => {
+    return res.send('healthy');
+});
+
 db.then(() =>
     {
         app.listen(PORT, () => {
