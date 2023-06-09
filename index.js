@@ -17,8 +17,6 @@ app.get('/health', (req, res) => {
     
 });
 
-app.post('/register', authController.register);
-
 db.then(() =>
     {
         app.listen(PORT, () => {
