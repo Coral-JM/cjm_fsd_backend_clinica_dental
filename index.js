@@ -3,7 +3,7 @@ const app = express();
 const db = require('./db');
 const router = require('./router');
 const authController = require('./controllers/authController');
-
+const auth = require('./middlewares/verifyToken');
 
 const PORT = 5000;
 
@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use(router);
 
-app.get('/health', (req, res) => {
+app.get('/health', auth, (req, res) => {
     return res.send('healthy');
     
 });
