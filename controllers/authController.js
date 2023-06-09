@@ -1,5 +1,7 @@
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 const authController = {};
 
 authController.register = async (req, res) => {
@@ -22,6 +24,52 @@ authController.register = async (req, res) => {
     } catch (error) {
         return res.send('Somethign went wrong creating users' + error.message)
         
+    }
+}
+
+authController.login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const user = await User.findOne({
+            where : {
+                email: email
+            }
+        })
+
+        if (!user) {
+            return res.json({
+                success: true,
+                message: "Wrong credentials"
+        })
+        }
+        const isMatch = bcrypt.compareSync(password, user.password);
+
+        if (!isMatch) {
+            return res.json({
+                success: true,
+                message: "Wrong credentials"
+            })
+            
+        }
+        const token = jwt.sign({
+            userId: user.id,
+            roleId: user.role_id,
+            email: user.email
+        },
+        'secreto'
+        );
+        return res.json({
+            success: true,
+            message: "User Logged",
+            token: token
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "User cant be logged",
+            error: error
+        })    
     }
 }
 
