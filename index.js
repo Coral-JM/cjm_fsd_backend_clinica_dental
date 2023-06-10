@@ -3,6 +3,7 @@ const app = express();
 const db = require('./db');
 const router = require('./router');
 const authController = require('./controllers/authController');
+const serviceController = require('./controllers/serviceController');
 const auth = require('./middlewares/verifyToken');
 
 const PORT = 5000;
