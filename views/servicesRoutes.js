@@ -6,8 +6,9 @@ const router = require('express').Router();
 const isAdmin = require('../middlewares/isAdmin')
 
 
-router.post('/', auth, isAdmin, serviceController.createService);
-router.put('/services/:id', serviceController.updateService);
+
+router.get('/', serviceController.getServices);
+router.post('/', serviceController.createServices);
 
 
 module.exports = router;
