@@ -32,44 +32,51 @@ authController.login = async (req, res) => {
         const { email, password } = req.body;
 
         const user = await User.findOne({
-            where : {
-                email: email
-            }
+            where : { email: email }
         })
 
         if (!user) {
-            return res.json({
+            return res.json(
+                {
                 success: true,
                 message: "Wrong credentials"
-        })
+                }
+            )
         }
         const isMatch = bcrypt.compareSync(password, user.password);
 
         if (!isMatch) {
-            return res.json({
+            return res.json(
+                {
                 success: true,
                 message: "Wrong credentials"
-            })
+                }
+            )
             
         }
-        const token = jwt.sign({
+        const token = jwt.sign(
+            {
             userId: user.id,
             roleId: user.role_id,
             email: user.email
-        },
+            },
         'secreto', { expiresIn: '2h'}
         );
-        return res.json({
+        return res.json(
+            {
             success: true,
             message: "User Logged",
             token: token
-        })
+            }
+        )
     } catch (error) {
-        return res.status(500).json({
+        return res.status(500).json(
+            {
             success: false,
             message: "User cant be logged",
             error: error
-        })    
+            }
+        )    
     }
 }
 
