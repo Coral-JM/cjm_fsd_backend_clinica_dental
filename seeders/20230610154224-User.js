@@ -11,8 +11,8 @@ module.exports = {
       {
             id: 1,
             name: "Ana", 
-            emai:"ana@ana.com", 
-            roleId: 1,
+            email:"ana@ana.com", 
+            role_Id: 1,
             createdAt: "2023-06-10 00:00:00", 
             updatedAt: "2023-06-10 00:00:00"
         },
@@ -21,7 +21,7 @@ module.exports = {
             name: "Cris", 
             email: "cris@gmail.com", 
             password: "12345678", 
-            roleId: 1, 
+            role_Id: 1, 
             createdAt: "2023-06-10 00:00:00", 
             updatedAt: "2023-06-10 00:00:00"
         },
@@ -30,7 +30,7 @@ module.exports = {
             name: "Montse", 
             email: "montse@gmail.com", 
             password: "12345678", 
-            roleId: 1, 
+            role_Id: 1, 
             createdAt: "2023-06-10 00:00:00", 
             updatedAt: "2023-06-10 00:00:00"
         },
@@ -39,7 +39,7 @@ module.exports = {
             name: "Coral", 
             email: "coral@gmail.com", 
             password: "12345678", 
-            roleId: 1, 
+            role_Id: 1, 
             createdAt: "2023-06-10 00:00:00", 
             updatedAt: "2023-06-10 00:00:00"
         },

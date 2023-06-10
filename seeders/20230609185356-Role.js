@@ -12,27 +12,43 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    return queryInterface.bulkInsert('Roles', [
-      {
-        id: 1,
-        name: 'user',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: 2,
-        name: 'admin',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: 3,
-        name: 'super_admin',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
-    ]);
-  },
+  //   return queryInterface.bulkInsert('Roles', [
+  //     {
+  //       id: 1,
+  //       name: 'user',
+  //       createdAt: new Date(),
+  //       updatedAt: new Date()
+  //     },
+  //     {
+  //       id: 2,
+  //       name: 'admin',
+  //       createdAt: new Date(),
+  //       updatedAt: new Date()
+  //     },
+  //     {
+  //       id: 3,
+  //       name: 'super_admin',
+  //       createdAt: new Date(),
+  //       updatedAt: new Date()
+  //     }
+  //   ]);
+  // },
+  await queryInterface.bulkInsert('Roles', [
+    {
+      id: 1,
+      name: "User", 
+      createdAt: "2023-06-10 00:00:00", 
+      updatedAt: "2023-06-10 00:00:00"
+    },
+    {
+      id: 2,
+      name: "Admin", 
+      createdAt: "2023-06-10 00:00:00", 
+      updatedAt: "2023-06-10 00:00:00"
+    },
+  ],
+  {});
+},
 
   async down (queryInterface, Sequelize) {
     /**

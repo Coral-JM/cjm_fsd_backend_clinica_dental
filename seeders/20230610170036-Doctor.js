@@ -12,22 +12,21 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Users', [
+    await queryInterface.bulkInsert('Doctors', [
       {
         id: 1,
-        collegiate_num: "070706732", 
-        user_id: 8
+        collegiated_num: 111111111, 
+        user_id: 1,
+        createdAt: "2023-06-10 00:00:00", 
+        updatedAt: "2023-06-10 00:00:00"
       },
       {
         id: 2,
-        collegiate_num: "085514682", 
-        user_id: 9
+        collegiated_num: 222222222, 
+        user_id: 2,
+        createdAt: "2023-06-10 00:00:00", 
+        updatedAt: "2023-06-10 00:00:00"
       },
-      {
-        id: 3,
-        collegiate_num: "070124564", 
-        user_id: 10
-      }
     ],
     {});
   },
