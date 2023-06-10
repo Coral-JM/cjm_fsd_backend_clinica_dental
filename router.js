@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const authRoutes = require('./views/authRoutes');
-const serviceRoutes = require('./views/serviceRoutes');
+const authRoutes = require('./views/authRouter');
 
 
-router.use('/auth', authRoutes);
-router.use('/services', serviceRoutes);
+const usersRouter = require ('./views/usersRouter');
+const servicesRouter= require ('./views/servicesRouter');
 
+router.use('/services', servicesRouter);
+router.use('/users', usersRouter);
 
 module.exports = router;
