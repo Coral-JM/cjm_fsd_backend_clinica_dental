@@ -18,9 +18,10 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: "doctor_id",
       });
   }
-  }
+}
   Doctor.init({
-    collegiated_num: DataTypes.STRING
+    collegiate_num: DataTypes.INTEGER,
+    user_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Doctor',
