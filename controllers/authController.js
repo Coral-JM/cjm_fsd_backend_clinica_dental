@@ -74,7 +74,13 @@ authController.login = async (req, res) => {
             { expiresIn: '2h' }  
         );
 
-        return res.json(token)
+        return res.json(
+            {
+                success: true,
+                message: "User logged",
+                token: token
+            }
+        );
     } catch (error) {
         return res.status(403).json({
                 success: false,
