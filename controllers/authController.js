@@ -5,84 +5,83 @@ const jwt = require('jsonwebtoken');
 const authController = {};
 
 authController.register = async (req, res) => {
-    
     try {
-        if (req.body.password.length < 4) {
-            return res.send('Password must be longer than four characters')
-        }
-        const newPassword = bcrypt.hashSync(req.body.password, 8);
+        const {name, email, password} = req.body;
+        const newPassword = bcrypt.hashSync(password, 10);
+
+        console.log(newPassword)
 
         const newUser = await User.create(
             {
-                name: req.body.name,
-                email: req.body.email,
+                name: name,
+                email: email,
                 password: newPassword,
-                role_id: req.body.role_id || 1
+                role_id: 1
             }
         )
-        return res.send(newUser);
+        return res.json(
+            {
+            success: true,
+            message: "Register was succesful",
+            data: newUser
+            });
+
     } catch (error) {
-        return res.send('Somethign went wrong creating users' + error.name)
-        
+            return res.status(500).json({
+                success: false,
+                message: "Somenthing went wrong with Register",
+                error: error.message
+            })
     }
 }
 
 authController.login = async (req, res) => {
     try {
-        const { email, password } = req.body;
 
-        const user = await User.findOne({
-            where : { email: email }
-        })
+        const {email, password} = req.body;
 
-        if (!user) {
-            return res.json(
-                {
-                success: true,
-                message: "Wrong credentials"
-                }
-            )
-        }
-        const isMatch = bcrypt.compareSync(password);
-
-        if (!isMatch) {
-            return res.json(
-                {
-                success: true,
-                message: "Wrong credentials"
-                }
-            )
-            
-        }
-        const token = jwt.sign(
+        const user = await User.findOne(
             {
-        //     userId: user.id,
-        //     roleId: user.role_id,
-        //     email: user.email
-
-                userId: user.userId,
-                roleId: user.roleId,
-                email: user.email,
+                where: {
+                    email:email,
+                }
             },
-        'secreto', 
-        { expiresIn: '2h'}
         );
-        return res.json(
-            {
-            success: true,
-            message: "User Logged",
-            token: token
-            }
-        )
+        if(!user) {
+            return res.status(500).json({
+                success: false,
+                message: "The email address or password is incorrect. Please try again.",
+            }) 
+        }
+
+        const isMatch = bcrypt.compareSync(password, user.password);
+
+        if(!isMatch) {
+            return res.status(403).json({
+                success: false,
+                message: "The email address or password is incorrect. Please try again.",
+            }) 
+        }
+
+        const token = jwt.sign(
+            { 
+                userId: user.id,
+                email: user.email,
+                roleId: user.role_id
+            }, 
+            'secreto', 
+
+            { expiresIn: '2h' }  
+        );
+
+        return res.json(token)
     } catch (error) {
-        return res.status(500).json(
-            {
-            success: false,
-            message: "User cant be logged",
-            error: error.message
-            }
-        )    
+        return res.status(403).json({
+                success: false,
+                message: "Somenthing went wrong with Login",
+                error: error.message
+            })
     }
 }
 
-module.exports = authController
+module.exports = authController;
