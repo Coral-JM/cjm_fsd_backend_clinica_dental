@@ -17,12 +17,12 @@ authController.register = async (req, res) => {
                 name: req.body.name,
                 email: req.body.email,
                 password: newPassword,
-                role_id: 1
+                role_id: req.body.role_id || 1
             }
         )
         return res.send(newUser);
     } catch (error) {
-        return res.send('Somethign went wrong creating users' + error.message)
+        return res.send('Somethign went wrong creating users' + error.name)
         
     }
 }
@@ -43,7 +43,7 @@ authController.login = async (req, res) => {
                 }
             )
         }
-        const isMatch = bcrypt.compareSync(password, user.password);
+        const isMatch = bcrypt.compareSync(password);
 
         if (!isMatch) {
             return res.json(
@@ -56,11 +56,16 @@ authController.login = async (req, res) => {
         }
         const token = jwt.sign(
             {
-            userId: user.id,
-            roleId: user.role_id,
-            email: user.email
+        //     userId: user.id,
+        //     roleId: user.role_id,
+        //     email: user.email
+
+                userId: user.userId,
+                roleId: user.roleId,
+                email: user.email,
             },
-        'secreto', { expiresIn: '2h'}
+        'secreto', 
+        { expiresIn: '2h'}
         );
         return res.json(
             {
@@ -74,7 +79,7 @@ authController.login = async (req, res) => {
             {
             success: false,
             message: "User cant be logged",
-            error: error
+            error: error.message
             }
         )    
     }

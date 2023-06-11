@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const auth = (req, res, next) => {
     try {
-        const bearerToken = req.headers.autorization;
+        const bearerToken = req.headers.authorization;
 
         if (!bearerToken) {
             return res.json({
@@ -21,7 +21,7 @@ const auth = (req, res, next) => {
         return res.status(500).json({
             success: false,
             message: "Token invalid",
-            error: error
+            error: error.name
         })
     }
 }

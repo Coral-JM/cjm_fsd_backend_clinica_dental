@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const db = require('./db');
 const router = require('./router');
-const authController = require('./controllers/authController');
-const serviceController = require('./controllers/serviceController');
 const auth = require('./middlewares/verifyToken');
 
 const PORT = 5000;
@@ -13,7 +11,7 @@ app.use(express.json());
 
 app.use(router);
 
-app.get('/health', auth, (req, res) => {
+app.get('/health', (req, res) => {
     return res.send('healthy');
     
 });
