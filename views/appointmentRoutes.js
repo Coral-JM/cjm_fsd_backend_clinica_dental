@@ -12,10 +12,6 @@ router.post('/', verifyToken, appointmentController.createAppointments);
 router.put('/', verifyToken, verifyAppointmentChanges, appointmentController.updateMyAppointment);
 router.delete('/',verifyToken, appointmentController.deleteMyAppointment);
 
-//extras
-router.get('/doctor/my', verifyToken,isDoctor, appointmentController.getMyAppointmentsAsDoctor);
-router.get('/doctor/my-verified', verifyToken, isDoctor, appointmentController.getMyPendingAppointmentsAsDoctor);
-router.put('/verify', verifyToken, isDoctor, appointmentController.verify);
-router.get('/admin', verifyToken, isAdmin, appointmentController.getAllAppointmentsAsAdmin);
+
 
 module.exports = router;

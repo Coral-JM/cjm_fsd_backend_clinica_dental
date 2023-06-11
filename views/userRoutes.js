@@ -13,6 +13,5 @@ router.get("/", verifyToken, isDoctor, userController.getAllUsersAsDoctor);
 router.get("/me", verifyToken, userController.getMyUser);
 router.put("/me", verifyToken, verifyUserChanges, userController.updateMyUser);
 
-router.get("/admin", verifyToken, isAdmin, userController.getAllUsersAsAdmin);
 
 module.exports = router;
