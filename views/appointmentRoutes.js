@@ -7,10 +7,13 @@ const appointmentController = require('../controllers/appointmentController');
 const router = require('express').Router();
 
 router.get('/user', appointmentController.getAppointmentsByuserId);
-// router.get('/doctor', verifyToken, isDoctor, appointmentController.getAllAppointmentsAsDoctor);
 router.post('/appoinments', appointmentController.createAppointments);
-// router.put('/', verifyToken, verifyAppointmentChanges, appointmentController.updateMyAppointment);
+router.put('/appointments', appointmentController.updateMyAppointment);
+
+
+
 // router.delete('/',verifyToken, appointmentController.deleteMyAppointment);
+// router.get('/doctor', verifyToken, isDoctor, appointmentController.getAllAppointmentsAsDoctor);
 
 
 module.exports = router;

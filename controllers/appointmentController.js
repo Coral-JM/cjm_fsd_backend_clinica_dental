@@ -90,6 +90,42 @@ appointmentController.getAppointmentsByuserId = async (req, res) => {
         })
     }
 }
+appointmentController.updateMyAppointment = async (req, res) => {
+
+    
+    try {
+        const userId = req.userId
+        const appointmentId = req.params.id;
+        const { comments } = req.body;
+        console.log(req.userId)
+        const updateAppointment = await Appointments.update(
+
+            {comments: comments}, 
+
+            {
+                where: {
+                    id: appointmentId,
+                    user_id : userId
+                },
+            });
+            
+        console.log(updateAppointment);
+        return res.json(
+            {
+            success: true,
+            message: "Appointment succesfully updated",
+            comments: updateAppointment,
+            user_id : userId
+            });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Somenthing went wrong trying to update the appointment",
+            error: error.message
+        })
+    }
+}
 
 
 

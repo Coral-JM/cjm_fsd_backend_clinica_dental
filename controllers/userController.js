@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const bcrypt = require('bcrypt');
 
 const userController = {};
 
@@ -22,29 +23,42 @@ userController.getMyUser = async(req,res) => {
         );
     }
 }
-
+  
 userController.updateMyUser = async(req,res) => {
     try {
-        const user = req.User;
-        const changes= req.body.changes;
+        const userId = req.body.user_id
+        const {name, email, password} = req.body;
+        const newPassword = bcrypt.hashSync(password, 10);
+        const updateUser = await User.update(
+            {
+                name: name,
+                email: email,
+                password: newPassword,
+            }, 
+
+            {
+                where: {
+                    user_id : userId,
+                },
+            });
         
-        user.update(changes);
-        user.save();
+            if (!updateUser) {
+                return res.send('User profile not updated')
+            }
+
         return res.json(
             {
-                success: true,
-                message: "User succesfully updated",
-                data: user
-            }
-        );
+            success: true,
+            message: "User profile succesfully updated",
+            data: updateUser
+            });
+
     } catch (error) {
-        return res.status(500).json(
-            {
-                success: false,
-                message: "Something went wrong",
-                error: error.message
-            }
-        );
+        return res.status(500).json({
+            success: false,
+            message: "Somenthing went wrong trying to update your profile",
+            error: error.message
+        })
     }
 }
 
