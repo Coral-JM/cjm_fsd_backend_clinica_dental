@@ -7,10 +7,11 @@ userController.getMyUser = async(req,res) => {
     try {
         const user = await User.findByPk(req.userId);
         return res.json(
+            //NO ME MUESTRA LOS CAMPOS DEL USER
             {
                 success: true,
                 message: "User succesfully retrieved",
-                data: user
+                user: User
             }
         )
     } catch (error) {
@@ -27,13 +28,11 @@ userController.getMyUser = async(req,res) => {
 userController.updateMyUser = async(req,res) => {
     try {
         const userId = req.body.user_id
-        const {name, email, password} = req.body;
-        const newPassword = bcrypt.hashSync(password, 10);
+        const {name, email} = req.body;
         const updateUser = await User.update(
             {
                 name: name,
-                email: email,
-                password: newPassword,
+                email: email
             }, 
 
             {
@@ -50,7 +49,7 @@ userController.updateMyUser = async(req,res) => {
             {
             success: true,
             message: "User profile succesfully updated",
-            data: updateUser
+            name: updateUser
             });
 
     } catch (error) {
