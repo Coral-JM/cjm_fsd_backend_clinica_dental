@@ -6,6 +6,7 @@ const authController = {};
 
 authController.register = async (req, res) => {
     try {
+        
         const {name, email, password} = req.body;
         const newPassword = bcrypt.hashSync(password, 10);
 
@@ -16,7 +17,7 @@ authController.register = async (req, res) => {
                 name: name,
                 email: email,
                 password: newPassword,
-                role_id: 1
+                role_id: req.body.role_id || 1
             }
         )
         return res.json(
@@ -67,7 +68,7 @@ authController.login = async (req, res) => {
             { 
                 userId: user.id,
                 email: user.email,
-                roleId: user.role_id
+                // roleId: user.role_id
             }, 
             'secreto', 
 

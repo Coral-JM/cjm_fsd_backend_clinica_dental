@@ -34,7 +34,8 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.INTEGER,
     doctor_id: DataTypes.INTEGER,
     comments: DataTypes.STRING
-  }, {
+  }, 
+  {
     sequelize,
     modelName: 'Appointments',
   });

@@ -4,7 +4,7 @@ const authRoutes = require('./views/authRoutes');
 
 // const userRoutes = require ('./views/userRoutes');
 // const serviceRoutes = require ('./views/serviceRoutes');
-// const appointmentRoutes = require ('./views/appointmentRoutes');
+const appointmentRoutes = require ('./views/appointmentRoutes')
 // const roleRoutes = require ('./views/roleRoutes');
 // const doctorRoutes = require ('./views/doctorRoutes');
 
@@ -12,7 +12,7 @@ const authRoutes = require('./views/authRoutes');
 router.use('/', authRoutes);
 // router.use('/services', serviceRoutes);
 // router.use('/users', userRoutes);
-// router.use('/appointments', appointmentRoutes);
+router.use('/', appointmentRoutes);
 // router.use('/roles', roleRoutes);
 // router.use('/doctors', doctorRoutes);
 
