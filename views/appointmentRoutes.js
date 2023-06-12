@@ -9,11 +9,11 @@ const router = require('express').Router();
 router.get('/user', appointmentController.getAppointmentsByuserId);
 router.post('/appoinments', appointmentController.createAppointments);
 router.put('/appointments', appointmentController.updateMyAppointment);
+router.delete('/appointments', appointmentController.deleteMyAppointment);
 
 
 
-// router.delete('/',verifyToken, appointmentController.deleteMyAppointment);
-// router.get('/doctor', verifyToken, isDoctor, appointmentController.getAllAppointmentsAsDoctor);
+// router.get('/doctor', appointmentController.getAllAppointmentsAsDoctor);
 
 
 module.exports = router;

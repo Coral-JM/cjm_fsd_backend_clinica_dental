@@ -90,6 +90,7 @@ appointmentController.getAppointmentsByuserId = async (req, res) => {
         })
     }
 }
+//NO ME APLICA LOS CAMBIOS AL APPOINTMENT
 appointmentController.updateMyAppointment = async (req, res) => {
 
     
@@ -126,7 +127,39 @@ appointmentController.updateMyAppointment = async (req, res) => {
         })
     }
 }
-
+//NO FUNCIONA SE QUEDA PARADO
+appointmentController.deleteMyAppointment = async (req, res) => {
+    try {
+        const appointmentId = req.body.id;
+        const userId = req.userId;
+        const appointment = await Appointments.findByPk(appointmentId);
+            if(appointment){
+                if(appointment.user_id === userId){ 
+                    appointment.destroy();
+                    return res.json(
+                        {
+                            success: true,
+                            message: "Appointment succesfully deleted",
+                            data: appointment
+                        }
+                    );
+                } else {
+                    return res.status(500).json({
+                        success: false,
+                        message: "Appointment selected doesn't exist or you don't have privileges to do that.",
+                        error: error.message
+                    })
+                }
+            }
+        }catch(error){
+            return res.status(500).json({
+                success: false,
+                message: "Something went wrong trying to delete your appointment",
+                error: error.message
+            })
+        }
+    
+}
 
 
 module.exports = appointmentController;

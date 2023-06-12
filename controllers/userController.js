@@ -24,7 +24,8 @@ userController.getMyUser = async(req,res) => {
         );
     }
 }
-  
+
+//NO ME MUESTRA LOS CAMBIOS AL USER
 userController.updateMyUser = async(req,res) => {
     try {
         const userId = req.body.user_id
