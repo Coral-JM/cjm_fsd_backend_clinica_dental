@@ -17,7 +17,7 @@ module.exports = {
         id: 1,
         name: "Dimitri",
         collegiate_num: 111111111, 
-        user_id: 1,
+        user_id: 2,
         createdAt: "2023-06-10 00:00:00", 
         updatedAt: "2023-06-10 00:00:00"
       },
