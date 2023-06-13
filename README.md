@@ -1,4 +1,5 @@
-### 🦷 Proyecto de backend para una clínica dental 🦷
+
+<h3 align="center">🦷 Proyecto de backend para una clínica dental 🦷</h3>
 ---
 
 <details>
@@ -14,12 +15,12 @@
   </ol>
 </details>
 
-### Proyecto
+#### Proyecto
 
 Este proyecto consistía en el backend correspondiente al sistema de gestión de citas para una Clínica Dental. Para ello debíamos crear una API conectada a una base de datos MySQL con relaciones entre sus tablas. 
 
 ---
-### Stack 
+#### Stack 
 <div align="center">
 
 <a href="https://www.expressjs.com/">
@@ -45,11 +46,11 @@ Este proyecto consistía en el backend correspondiente al sistema de gestión de
 
 ---
 
-### Diagrama
+#### Diagrama
 
 !['imagen-db'](./img/DiagramClinicaDental.png)
 
-### Instalación en local
+#### Instalación en local
 
 1. Clonar el repositorio
 2. ` $ npm install `
@@ -60,17 +61,18 @@ Este proyecto consistía en el backend correspondiente al sistema de gestión de
 
 ---
 
-### Endpoints
+#### Endpoints
 
 Para obtener acceso a todos los endpoints conéctate a Postman y dále click aquí:
  <!-- <div align="center"> [![Run in Postman]()</div> -->
 
 ---
-### Licencia
+#### Licencia
 
 Este proyecto ha sido realizado por Coral Jiménez, estudiante de GeeksHubs Academy en la promoción de primavera del 2023 y cuenta con una MIT License.
 
-### Agradecimientos
+---
+#### Agradecimientos
 
 Sin duda este proyecto no podría haberlo hecho sin la ayuda de mis compañeros. Especial mención a Judit Grau por cogerme de la mano y no soltarme y a Eduardo Kiriakos por toda su paciencia y experiencia.
 
