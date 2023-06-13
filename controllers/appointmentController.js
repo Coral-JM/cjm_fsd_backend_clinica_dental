@@ -90,22 +90,21 @@ appointmentController.getAppointmentsByuserId = async (req, res) => {
 }
 //NO ME APLICA LOS CAMBIOS AL APPOINTMENT
 appointmentController.updateMyAppointment = async (req, res) => {
-
+    
     
     try {
         const userId = req.userId
         const appointmentId = req.params.id;
         const { comments } = req.body;
         console.log(req.userId)
-
         const updateAppointment = await Appointments.update(
-
+            
             {comments: comments}, 
 
             {
                 where: {
                     id: appointmentId,
-                    user_id : userId
+                    user_id : userId,
                 },
             });
             
@@ -114,8 +113,7 @@ appointmentController.updateMyAppointment = async (req, res) => {
             {
             success: true,
             message: "Appointment succesfully updated",
-            comments: updateAppointment,
-            user_id : userId
+            data: updateAppointment
             });
 
     } catch (error) {
@@ -126,6 +124,8 @@ appointmentController.updateMyAppointment = async (req, res) => {
         })
     }
 }
+
+
 //NO FUNCIONA SE QUEDA PARADO
 appointmentController.deleteMyAppointment = async (req, res) => {
     try {
