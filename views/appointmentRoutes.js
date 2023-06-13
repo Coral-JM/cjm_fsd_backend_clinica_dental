@@ -1,13 +1,12 @@
 const appointmentController = require('../controllers/appointmentController');
-// const isDoctor = require('../middleware/isDoctor');
-// const verifyToken = require('../middleware/verifyToken');
-// const verifyAppointmentChanges = require('../middleware/verifyAppointmentChanges');
+// const auth = require('../middleware/verifyToken');
 // const isAdmin = require('../middleware/isAdmin');
+// const isDoctor = require('../middleware/isDoctor');
 
 const router = require('express').Router();
 
 router.get('/user', appointmentController.getAppointmentsByuserId);
-router.post('/appoinments', appointmentController.createAppointments);
+router.post('/appointments', appointmentController.createAppointments);
 router.put('/appointments', appointmentController.updateMyAppointment);
 router.delete('/appointments', appointmentController.deleteMyAppointment);
 

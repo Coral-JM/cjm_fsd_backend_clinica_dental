@@ -8,7 +8,7 @@ appointmentController.createAppointments = async (req, res) => {
     try {
 
         const { service_id, user_id, doctor_id, comments} = req.body;
-        console.log(req.body);
+        
         const newAppointment = await Appointments.create(
             {
                 service_id: service_id,
@@ -65,14 +65,12 @@ appointmentController.getAppointmentsByuserId = async (req, res) => {
                         attributes: {
                             exclude: ["password", "role_id", "createdAt","updatedAt"]
                             }
-                 
                     }
-            ],
+                ],
                 //     attributes: {
                 //         exclude: ["user_id", "doctor_id", "service_id", "comments", "createdAt","updatedAt"],
                 // }
             }
-            
         )
         console.log(getAppointmentsByUserId);
         return res.json(
@@ -99,6 +97,7 @@ appointmentController.updateMyAppointment = async (req, res) => {
         const appointmentId = req.params.id;
         const { comments } = req.body;
         console.log(req.userId)
+
         const updateAppointment = await Appointments.update(
 
             {comments: comments}, 

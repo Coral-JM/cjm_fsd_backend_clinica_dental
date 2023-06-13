@@ -2,10 +2,9 @@
 const userController = require ('../controllers/userController');
 const router = require('express').Router();
 
-// const verifyToken = require('../middleware/verifyToken');
+// const auth = require('../middleware/verifyToken');
 // const isAdmin = require('../middleware/isAdmin');
 // const isDoctor = require('../middleware/isDoctor');
-// const verifyUserChanges = require('../middleware/verifyUserChanges');
 
 //Endpoints CRUD
 
@@ -13,7 +12,7 @@ const router = require('express').Router();
 router.get("/myuser", userController.getMyUser);
 router.put("/myuser", userController.updateMyUser);
 
-//router.get("/", verifyToken, userController.getAllUsers);
-// router.get("/", verifyToken, isDoctor, userController.getAllUsersAsDoctor);
+//router.get("/", auth, userController.getAllUsers);
+// router.get("/", auth, isDoctor, userController.getAllUsersAsDoctor);
 
 module.exports = router;
