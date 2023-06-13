@@ -11,7 +11,7 @@ userController.getMyUser = async(req,res) => {
             {
                 success: true,
                 message: "User succesfully retrieved",
-                user: User
+                user: user
             }
         )
     } catch (error) {

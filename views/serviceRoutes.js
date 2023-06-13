@@ -7,8 +7,8 @@ const isAdmin = require('../middlewares/isAdmin')
 
 
 
-router.get('/', serviceController.getServices);
-router.post('/', serviceController.createServices);
+// router.get('/', serviceController.getServices);
+// router.post('/', serviceController.createServices);
 
 
 module.exports = router;
