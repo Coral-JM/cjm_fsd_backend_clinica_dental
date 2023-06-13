@@ -1,6 +1,6 @@
 const appointmentController = require('../controllers/appointmentController');
 const auth = require('../middlewares/verifyToken');
-const isDoctor = require('../middleware/isDoctor');
+const isDoctor = require('../middlewares/isDoctor');
 // const isAdmin = require('../middleware/isAdmin');
 
 
