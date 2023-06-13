@@ -7,7 +7,7 @@ const appointmentRoutes = require ('./views/appointmentRoutes')
 
 router.use('/', authRoutes);
 router.use('/users', userRoutes);
-router.use('/appointments', appointmentRoutes);
+router.use('/', appointmentRoutes);
 
 
 module.exports = router;

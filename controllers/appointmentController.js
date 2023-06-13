@@ -158,6 +158,64 @@ appointmentController.deleteMyAppointment = async (req, res) => {
     
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+appointmentController.getAllAppointmentsAsDoctor = async (req, res) => {
+    try {
+
+        const getAllAppointmentsAsDoctor = await Appointments.findAll(
+
+            {
+                include: [
+                    {
+                        model: Service,
+                        attributes: {
+                            exclude: ["createdAt", "updatedAt"]
+                        }
+                    },
+                    
+                    {
+                        model: User,
+                        attributes: {
+                            exclude: ["password", "role_id", "createdAt", "updatedAt"]
+                        }
+                    },
+                    {
+                        model: Doctor,
+                        attributes: {
+                            exclude: ["collegiate_num", "user_id", "createdAt", "updatedAt"],
+                    },
+                        
+                        
+                        include: {
+                            model:User,
+                            attributes: {
+                                exclude: ["password", "role_id", "createdAt","updatedAt",  "address"]
+                            }
+                    } 
+                }
+            ],
+                    attributes: {
+                        exclude: ["user_id", "doctor_id", "service_id", "createdAt","updatedAt"],
+                }
+            }
+            
+        )
+
+        return res.json(
+            {
+            success: true,
+            message: "All Appointments succesfully retrieved as user doctor",
+            data: getAllAppointmentsAsDoctor
+            });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Somenthing went wrong trying to get all appointments as user doctor",
+            error: error.message
+        })
+    }
+}
 
 module.exports = appointmentController;

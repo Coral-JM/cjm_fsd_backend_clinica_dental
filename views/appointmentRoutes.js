@@ -5,14 +5,13 @@ const auth = require('../middlewares/verifyToken');
 
 const router = require('express').Router();
 
-router.get('/user', auth, appointmentController.getAppointmentsByuserId);
+router.get('/appointments', auth, appointmentController.getAppointmentsByuserId);
 router.post('/appointments', auth, appointmentController.createAppointments);
-router.put('/:id', auth, appointmentController.updateMyAppointment);
-router.delete('/:id', auth,  appointmentController.deleteMyAppointment);
+router.put('/appointments/:id', auth, appointmentController.updateMyAppointment);
+router.delete('/appointments/:id', auth,  appointmentController.deleteMyAppointment);
 
 
-
-// router.get('/doctor', appointmentController.getAllAppointmentsAsDoctor);
+router.get('/appointments/doctor', appointmentController.getAllAppointmentsAsDoctor);
 
 
 module.exports = router;
