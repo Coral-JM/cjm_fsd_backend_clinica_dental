@@ -15,7 +15,6 @@ module.exports = {
     await queryInterface.bulkInsert('Doctors', [
       {
         id: 1,
-        name: "Dimitri",
         collegiate_num: 111111111, 
         user_id: 2,
         createdAt: "2023-06-10 00:00:00", 
@@ -23,7 +22,6 @@ module.exports = {
       },
       {
         id: 2,
-        name: "Eduardo",
         collegiate_num: 222222222, 
         user_id: 3,
         createdAt: "2023-06-10 00:00:00", 
