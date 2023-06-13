@@ -25,20 +25,21 @@ userController.getMyUser = async(req,res) => {
     }
 }
 
-//NO ME MUESTRA LOS CAMBIOS AL USER
 userController.updateMyUser = async(req,res) => {
     try {
-        const userId = req.body.user_id
-        const {name, email} = req.body;
+        const userId = req.userId
+        const {name, email, password} = req.body;
+        const newPassword = bcrypt.hashSync(password, 10);
         const updateUser = await User.update(
             {
                 name: name,
-                email: email
+                email: email,
+                password: newPassword,
             }, 
 
             {
                 where: {
-                    user_id : userId,
+                    id : userId,
                 },
             });
         
@@ -50,7 +51,7 @@ userController.updateMyUser = async(req,res) => {
             {
             success: true,
             message: "User profile succesfully updated",
-            name: updateUser
+            data: updateUser
             });
 
     } catch (error) {

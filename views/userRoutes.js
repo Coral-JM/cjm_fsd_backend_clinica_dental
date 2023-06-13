@@ -10,7 +10,7 @@ const auth = require('../middlewares/verifyToken');
 
 
 router.get("/myuser", auth, userController.getMyUser);
-router.put("/myuser", userController.updateMyUser);
+router.put("/myuser", auth, userController.updateMyUser);
 
 //router.get("/", auth, userController.getAllUsers);
 // router.get("/", auth, isDoctor, userController.getAllUsersAsDoctor);

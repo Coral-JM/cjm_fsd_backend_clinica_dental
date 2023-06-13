@@ -6,7 +6,7 @@ const appointmentRoutes = require ('./views/appointmentRoutes')
 
 
 router.use('/', authRoutes);
-router.use('/', userRoutes);
+router.use('/users', userRoutes);
 router.use('/', appointmentRoutes);
 
 
