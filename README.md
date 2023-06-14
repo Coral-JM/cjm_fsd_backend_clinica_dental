@@ -65,7 +65,8 @@ Este proyecto consistía en el backend correspondiente al sistema de gestión de
 #### Endpoints
 
 Para obtener acceso a todos los endpoints conéctate a Postman y dále click aquí:
- <!-- <div align="center"> [![Run in Postman]()</div> -->
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/27939331-c448155c-520a-4689-98b6-d66ed428d334?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D27939331-c448155c-520a-4689-98b6-d66ed428d334%26entityType%3Dcollection%26workspaceId%3D5efc5d03-0d9c-4ee1-8f5b-8a93c3ba6869)
 
 ---
 #### Licencia
