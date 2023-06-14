@@ -62,5 +62,34 @@ userController.updateMyUser = async(req,res) => {
         })
     }
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// GET ALL USERS AS A DOCTOR //
+userController.getAllUsersAsDoctor = async (req, res) => {
+    try {
+        const users = await User.findAll(
+            {
+                where:{
+                    role_id : 1
+                },
+            attributes: {
+                exclude: ["password", "createdAt","updatedAt", "role_id"],
+        }
+    }
+        );
+        return res.json(
+            {
+            success: true,
+            message: "All Registered Users succesfully retrieved as user doctor",
+            data: users
+            });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Somenthing went wrong trying to get all registered users as user doctor",
+            error: error.message
+        })
+    }
+}
 module.exports = userController;

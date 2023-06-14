@@ -160,6 +160,9 @@ appointmentController.deleteMyAppointment = async (req, res) => {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+// DOCTOR APPOINTMENTS //
+
 appointmentController.getMyAppointmentsAsDoctor = async (req, res) => {
     try {
         const doctorId= req.doctorId;
