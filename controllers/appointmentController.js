@@ -160,12 +160,14 @@ appointmentController.deleteMyAppointment = async (req, res) => {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-appointmentController.getAllAppointmentsAsDoctor = async (req, res) => {
+appointmentController.getMyAppointmentsAsDoctor = async (req, res) => {
     try {
-
-        const getAllAppointmentsAsDoctor = await Appointments.findAll(
-
+        const doctorId= req.doctorId;
+        const appointments = await Appointments.findAll(
             {
+                where: {
+                    doctor_id: doctorId
+                },
                 include: [
                     {
                         model: Service,
@@ -181,17 +183,15 @@ appointmentController.getAllAppointmentsAsDoctor = async (req, res) => {
                         }
                     },
                     {
-                        model: Doctor,
+                    model: Doctor,
                         attributes: {
                             exclude: ["collegiate_num", "user_id", "createdAt", "updatedAt"],
                     },
-                        
-                        
-                        include: {
-                            model:User,
-                            attributes: {
-                                exclude: ["password", "role_id", "createdAt","updatedAt",  "address"]
-                            }
+                    include: {
+                        model:User,
+                        attributes: {
+                            exclude: ["password", "role_id", "createdAt","updatedAt",  "address"]
+                        }
                     } 
                 }
             ],
@@ -205,8 +205,8 @@ appointmentController.getAllAppointmentsAsDoctor = async (req, res) => {
         return res.json(
             {
             success: true,
-            message: "All Appointments succesfully retrieved as user doctor",
-            data: getAllAppointmentsAsDoctor
+            message: "My appointments as Doctor sucessfully retieved",
+            data: appointments
             });
 
     } catch (error) {
@@ -217,5 +217,7 @@ appointmentController.getAllAppointmentsAsDoctor = async (req, res) => {
         })
     }
 }
+
+
 
 module.exports = appointmentController;

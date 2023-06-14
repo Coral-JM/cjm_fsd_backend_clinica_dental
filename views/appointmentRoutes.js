@@ -12,7 +12,7 @@ router.put('/appointments/:id', auth, appointmentController.updateMyAppointment)
 router.delete('/appointments/:id', auth,  appointmentController.deleteMyAppointment);
 
 
-router.get('/appointments/doctor', auth, isDoctor, appointmentController.getAllAppointmentsAsDoctor);
+router.get('/appointments/doctor', auth, isDoctor, appointmentController.getMyAppointmentsAsDoctor);
 
 
 module.exports = router;

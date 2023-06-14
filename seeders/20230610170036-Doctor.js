@@ -16,14 +16,14 @@ module.exports = {
       {
         id: 1,
         collegiate_num: 111111111, 
-        user_id: 2,
+        user_id: 1,
         createdAt: "2023-06-10 00:00:00", 
         updatedAt: "2023-06-10 00:00:00"
       },
       {
         id: 2,
         collegiate_num: 222222222, 
-        user_id: 3,
+        user_id: 2,
         createdAt: "2023-06-10 00:00:00", 
         updatedAt: "2023-06-10 00:00:00"
       },

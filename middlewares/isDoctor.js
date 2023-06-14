@@ -13,6 +13,7 @@ const isDoctor = async (req, res, next) => {
         });
     }
 
+
     if (req.roleId === 2) {
         req.doctorId= doctor.id;
         next();
