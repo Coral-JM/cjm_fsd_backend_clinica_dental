@@ -14,10 +14,16 @@ const isDoctor = async (req, res, next) => {
     }
 
 
-    if (req.roleId === 2) {
-        req.doctorId= doctor.id;
-        next();
+    if (req.roleId !== 2) {
+        return res.status(500).json({
+            success: true,
+            message: "You don't have permissions.",
+            });
+       
     }
+
+    req.doctorId= doctor.id;
+    next();
 } catch (error) {
         return res.status(500).json({
             success: false,

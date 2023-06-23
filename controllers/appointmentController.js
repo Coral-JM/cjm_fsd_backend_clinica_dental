@@ -165,12 +165,16 @@ appointmentController.deleteMyAppointment = async (req, res) => {
 
 appointmentController.getMyAppointmentsAsDoctor = async (req, res) => {
     try {
-        const doctorId= req.doctorId;
+
+        //Lo que está comentado es para poder comprobar sin el middleware en el front si funciona y trae los datos. 
+        //Una vez activado rdx, se tendrá que volver a descomentar
+        
+        // const doctorId= req.doctorId;
         const appointments = await Appointments.findAll(
             {
-                where: {
-                    doctor_id: doctorId
-                },
+                // where: {
+                //     doctor_id: doctorId
+                // },
                 include: [
                     {
                         model: Service,
