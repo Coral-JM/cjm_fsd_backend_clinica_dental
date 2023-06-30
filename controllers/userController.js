@@ -7,7 +7,7 @@ userController.getMyUser = async(req,res) => {
     try {
         const user = await User.findByPk(req.userId);
         return res.json(
-            //NO ME MUESTRA LOS CAMPOS DEL USER
+
             {
                 success: true,
                 message: "User succesfully retrieved",

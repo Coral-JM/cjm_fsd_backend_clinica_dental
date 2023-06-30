@@ -5,12 +5,15 @@ const isDoctor = require('../middlewares/isDoctor');
 
 const router = require('express').Router();
 
-router.get('/appointments', auth, appointmentController.getAppointmentsByuserId);
-router.post('/appointments', auth, appointmentController.createAppointments);
-router.put('/appointments/:id', auth, appointmentController.updateMyAppointment);
+router.get('/appointments/appointmentsasuser', auth, appointmentController.getAppointmentsByuserId);
+//Habrá que poner el auth
+router.post('/appointments/createappointment', auth, appointmentController.createAppointments);
+//Esto ha sido modificado. Se ha eliminado el auth
+router.put('/appointments/appointmentsasuser', auth, appointmentController.updateMyAppointment);
+//Esto ha sido modificado. Se ha eliminado el auth
 router.delete('/appointments/:id', auth,  appointmentController.deleteMyAppointment);
 router.get('/appointments/doctor/allappointments', appointmentController.getMyAppointmentsAsDoctor);
-//Esto está cambiado para que funcione la ruta en front correctamente. Faltará añadir los middlewares con rdx 
+//Esto está cambiado para que funcione la ruta en front correctamente. Faltará añadir los middlewares para que funcione con rdx 
 
 //(router.get('/appointments/doctor/allappointments', auth, isDoctor, appointmentController.getMyAppointmentsAsDoctor);)
 

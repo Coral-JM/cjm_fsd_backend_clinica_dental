@@ -7,14 +7,16 @@ appointmentController.createAppointments = async (req, res) => {
     
     try {
 
-        const { service_id, user_id, doctor_id, comments} = req.body;
+        const { service_id, doctor_id, date, comments} = req.body;
+        const user_id = req.userId
         
         const newAppointment = await Appointments.create(
             {
                 service_id: service_id,
                 user_id: user_id,
                 doctor_id: doctor_id,
-                comments: comments
+                date: date,
+                comments: req.body.comments || "Pending"
             }
         )
         return res.json(
@@ -38,7 +40,7 @@ appointmentController.createAppointments = async (req, res) => {
 appointmentController.getAppointmentsByuserId = async (req, res) => {
     
     try {
-        const userId = req.body.user_id
+        const userId = req.userId
 
         const getAppointmentsByUserId = await Appointments.findAll(
             {
@@ -58,26 +60,38 @@ appointmentController.getAppointmentsByuserId = async (req, res) => {
                         model: Doctor,
                         attributes: {
                             exclude: ["user_id", "createdAt", "updatedAt"],
-                        }
+                        },
+                        include: {
+                            model:User,
+                            attributes: {
+                                exclude: ["password", "role_id", "createdAt","updatedAt",  "address"]
+                            }
+                        } 
+
                     },
                     {
                         model: User,
                         attributes: {
                             exclude: ["password", "role_id", "createdAt","updatedAt"]
                             }
-                    }
+                    },
+                    
                 ],
-                //     attributes: {
-                //         exclude: ["user_id", "doctor_id", "service_id", "comments", "createdAt","updatedAt"],
-                // }
+                attributes: [
+                    'id',"date"
+                 ],
             }
-        )
+        );
+        // const appointmentIds = getAppointmentsByUserId.map(appointment => appointment.id);
+
+        // console.log(appointmentIds);
+
         console.log(getAppointmentsByUserId);
         return res.json(
             {
-            success: true,
-            message: "Appointment succesfully retrieved",
-            data: getAppointmentsByUserId
+                success: true,
+                message: "Appointment succesfully retrieved",
+                data: getAppointmentsByUserId
             });
 
     } catch (error) {
@@ -94,16 +108,16 @@ appointmentController.updateMyAppointment = async (req, res) => {
     
     try {
         const userId = req.userId
-        const appointmentId = req.params.id;
-        const { comments } = req.body;
+        // const appointmentId = req.params.id;
+        const { date } = req.body;
         console.log(req.userId)
         const updateAppointment = await Appointments.update(
 
-            {comments: comments}, 
+            {date: date}, 
 
             {
                 where: {
-                    id: appointmentId,
+                    // id: appointmentId,
                     user_id : userId,
                 },
             });
@@ -170,6 +184,9 @@ appointmentController.getMyAppointmentsAsDoctor = async (req, res) => {
         //Una vez activado rdx, se tendrá que volver a descomentar
         
         // const doctorId= req.doctorId;
+
+        
+
         const appointments = await Appointments.findAll(
             {
                 // where: {
@@ -190,11 +207,11 @@ appointmentController.getMyAppointmentsAsDoctor = async (req, res) => {
                         }
                     },
                     {
-                    model: Doctor,
+                        model: Doctor,
                         attributes: {
                             exclude: ["collegiate_num", "user_id", "createdAt", "updatedAt"],
                     },
-                    include: {
+                        include: {
                         model:User,
                         attributes: {
                             exclude: ["password", "role_id", "createdAt","updatedAt",  "address"]

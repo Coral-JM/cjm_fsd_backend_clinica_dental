@@ -30,6 +30,9 @@ module.exports = {
           key:"id"
         }
       },
+      date: {
+        type: Sequelize.DATE
+      },
       comments: {
         type: Sequelize.STRING
       },

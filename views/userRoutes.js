@@ -7,8 +7,8 @@ const auth = require('../middlewares/verifyToken');
 
 
 
-router.get("/myuser", auth, userController.getMyUser);
-router.put("/myuser", auth, userController.updateMyUser);
+router.get("/myuser/updateProfile", auth, userController.getMyUser);
+router.put("/myuser/updateProfile", auth, userController.updateMyUser);
 router.get("/allusers", userController.getAllUsersAsDoctor);
 
 //Esta última ruta se ha modificado para poder acceder desde el front
